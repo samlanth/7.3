@@ -13,8 +13,13 @@ private:
 
 
 public:
+	int numRecu;
+	int denRecu;
 //un constructeur qui prend un const char* en paramètre et
 //le refile au constructeur de la classe exception.
-	CFractionException(const char* c) : exception(c) {};
+	CFractionException(const char* c, int den) : exception(c)
+	{
+		denRecu = den;
+	}
 
 };

@@ -22,7 +22,7 @@ int CFraction::GetNum() const
 void CFraction::SetDen(int den)
 {
 	if (den == 0)
-		throw CFractionException("Denominateur est zero");
+		throw CFractionException("Denominateur est zero", den);
 	else
 	{
 		den_ = den;
@@ -40,7 +40,7 @@ CFraction::CFraction(int num, int den)
 {
 	
 	if (den == 0)
-	throw CFractionException("Denominateur est zero");
+	throw CFractionException("Denominateur est zero", den);
 	else
 		Compteur_++;
 			
@@ -52,10 +52,10 @@ CFraction::CFraction(int nombre)
 	Compteur_++;
 }
 
-CFraction::CFraction(istream& ifs)
-{
+//Ajoutez un constructeur à la classe CFraction qui prend une référence à un istream en paramètre. 
+//Ce constructeur doit lire la prochaine ligne du flux d'entrée et en extraire les valeurs du numérateur et du dénominateur.
+//Si le constructeur est incapable de déchiffrer la ligne correctement, il lance une exception de type CFractionException avec un message d'erreur précis
 
-}
 
 CFraction::CFraction()
 	: num_(0), den_(1)

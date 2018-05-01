@@ -3,6 +3,7 @@
 #include <exception>
 #include "FractionException.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
 CFraction operator+(const CFraction &LaFraction, int Valeur)
@@ -52,33 +53,51 @@ CFraction LaPlusPetite(CFraction f1, CFraction f2, CFraction f3)
 
 int main()
 {
-	/*CFraction f1(1, 2);
-	try */
-}
-int division(int a, int b) // Calcule a divisé par b.
-{
-	if (b == 0)
-		throw string("ERREUR : Division par zéro !");
-	else
-		return a / b;
-}
-
-int main2()
-{
-	int a, b;
-	cout << "Valeur pour a : ";
-	cin >> a;
-	cout << "Valeur pour b : ";
-	cin >> b;
-
-	try
+	CFraction f1(1, 2);
+	bool erreur = false;
+	int num;
+	int den;
+	do
 	{
-		cout << a << " / " << b << " = " << division(a, b) << endl;
-	}
-	catch (string const& chaine)
-	{
-		cerr << chaine << endl;
-	}
-	return 0;
+		erreur = false;
+		cout << " Ecrivez votre fraction " << endl;
+		cout << " Numerateur " << endl;
+		cin >> num;
+		cout << " Denominateur " << endl;
+		cin >> den;
+
+
+		try
+		{
+			f1.SetNum(num);
+			f1.SetDen(den);
+			cout << "fraction cree" << endl;
+		}
+		catch (int i)
+		{
+			cout << "erreur " << i << endl;
+		}
+		catch (string s)
+		{
+			cout << s << endl;
+			erreur = true;
+		}
+		catch (const exception& e)
+		{
+			cout << e.what() << endl;
+			erreur = true;
+		}
+		catch (const CFractionException& e)
+		{
+			cout << e.what() << ": " << e.numRecu << "et" << e.denRecu << endl;
+			erreur = true;
+		}
+		catch (...)
+		{
+			cout << "erreur" << endl;
+			erreur = true;
+		}
+		cout << "fin des catchs " << endl;
+	} while (erreur);
 	system("pause");
 }

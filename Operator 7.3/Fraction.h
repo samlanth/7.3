@@ -20,7 +20,6 @@ public:
 		Compteur_++;
 	}
 	//Ajoutez un constructeur à la classe CFraction qui prend une référence à un istream en paramètre.
-	CFraction(istream& ifs);
 	~CFraction();
 	void SetNum(int num);
 	void SetDen(int den);
