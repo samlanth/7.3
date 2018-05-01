@@ -37,4 +37,6 @@ public:
 	CFraction& operator++();
 	bool operator<(const CFraction& Fraction) const;
 	static int GetCompteur() { return Compteur_; }
+
+  CFraction(istream& ifs);
 };
