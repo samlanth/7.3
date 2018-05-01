@@ -1,6 +1,8 @@
 //Vous devez concevoir une classe CFraction qui implémente un nombre rationnel,
 //sous forme numérateur/dénominateur. Par exemple, 3/4 est une fraction, 5/10 aussi.
 #pragma once
+#include "FractionException.h"
+
 class CFraction
 {
 private:

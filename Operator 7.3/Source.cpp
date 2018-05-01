@@ -3,6 +3,9 @@
 #include <exception>
 #include "FractionException.h"
 #include <string>
+#include <iostream>     // std::cout
+#include <fstream>      // std::ifstrea
+
 using namespace std;
 
 CFraction operator+(const CFraction &LaFraction, int Valeur)
@@ -52,9 +55,23 @@ CFraction LaPlusPetite(CFraction f1, CFraction f2, CFraction f3)
 
 int main()
 {
-	/*CFraction f1(1, 2);
-	try */
+  std::ifstream f("C:\\tmp\\fractions.txt", ios_base::in);
+  while ( f.eof() == false)
+  {
+    try
+    {
+      CFraction fract(f);
+      cout << "fraction ok" << endl;
+    }
+    catch (CFractionException& e)
+    {
+      cout << e.what() << endl;
+    }
+  }
+  f.close();
+
 }
+
 int division(int a, int b) // Calcule a divisé par b.
 {
 	if (b == 0)

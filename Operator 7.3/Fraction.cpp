@@ -52,9 +52,64 @@ CFraction::CFraction(int nombre)
 	Compteur_++;
 }
 
-CFraction::CFraction(istream& ifs)
+CFraction::CFraction(istream& is)
 {
+  if (is.good() == false)
+  {
+    throw CFractionException("Invalide stream");
+  }
 
+  std::string s;
+  try
+  {
+    is >> s;
+  }
+  catch (exception& e)
+  {
+    throw CFractionException(e.what());
+  }
+  cout << s << " ";
+
+  int k = s.find('/');
+  if(k<=0)
+  {
+    throw CFractionException("Invalid format");
+  }
+
+  std::string sn = s.substr(0, k);
+  std::string sd = s.substr(k+1);
+
+  if (sn.size() == 0)
+  {
+    throw CFractionException("Invalid numer");
+  }
+  if (sd.size() == 0)
+  {
+    throw CFractionException("Invalid den");
+  }
+
+  try
+  {
+    num_ = std::stoi(sn.c_str());
+  }
+  catch (exception& e)
+  {
+    throw CFractionException("Numer not numeric");
+  }
+
+  try
+  {
+    den_ = std::stoi(sd.c_str());
+  }
+  catch (exception& e)
+  {
+    throw CFractionException("Denom not numeric");
+  }
+
+  if (den_ == 0)
+  {
+    throw CFractionException("Denom is zero");
+  }
 }
 
 CFraction::CFraction()
